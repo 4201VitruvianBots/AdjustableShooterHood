@@ -26,6 +26,10 @@ public class Shooter extends SubsystemBase {
     servoMotors[1].set(0);
   }
 
+  public void testServo(double angle) {
+    servoMotors[0].setAngle(angle);
+  }
+
   // Angle in degrees
   public void setServosAngle(double angle) {
     if (angle > maxAngle) {

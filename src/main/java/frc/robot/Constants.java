@@ -16,6 +16,6 @@ public final class Constants {
     // CAN Addresses
     public static final int flywheelMotorA = 40;
     public static final int flywheelMotorB = 41;
-    public static final int leftServoMotor = 40;
-    public static final int rightServoMotor = 41;
+    public static final int leftServoMotor = 7;
+    public static final int rightServoMotor = 6;
 }

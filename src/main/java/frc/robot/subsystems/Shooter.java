@@ -5,15 +5,16 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
   private final double gearRatio = 14.0 / 48.0;
   private final double minAngle = 0;
-  private final double maxAngle = 30; // in degrees, furthest angle the hood can adjust to
+  private final double maxAngle = 180; // in degrees, furthest angle the hood can adjust to
   private final boolean leftInverted = false;
-  private final boolean rightInverted = true;
+  private final boolean rightInverted = false;
 
   private final Servo[] servoMotors = {
     new Servo(Constants.leftServoMotor),
@@ -22,12 +23,21 @@ public class Shooter extends SubsystemBase {
 
   /** Creates a new ExampleSubsystem. */
   public Shooter() {
-    servoMotors[0].set(0);
-    servoMotors[1].set(0);
+    servoMotors[0].setAngle(0);
+    servoMotors[1].setAngle(0);
   }
 
-  public void testServo(double angle) {
-    servoMotors[0].setAngle(angle);
+  public void testServo(double angle, boolean left) {
+    if (angle > maxAngle) {
+      angle = maxAngle;
+    } else if (angle < minAngle) {
+      angle = minAngle;
+    }
+    if (left) {
+      servoMotors[0].setAngle(angle);
+    } else {
+      servoMotors[1].setAngle(angle);
+    }
   }
 
   // Angle in degrees
@@ -49,8 +59,14 @@ public class Shooter extends SubsystemBase {
     }
   }
 
+  public double getServosAngle() {
+    return servoMotors[0].getAngle();
+  }
+
   @Override
   public void periodic() {
+    SmartDashboard.putNumber("left servo angle", servoMotors[0].getAngle());
+    SmartDashboard.putNumber("right servo angle", servoMotors[1].getAngle());
     // This method will be called once per scheduler run
   }
 

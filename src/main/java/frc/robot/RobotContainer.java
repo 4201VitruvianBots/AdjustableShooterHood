@@ -43,6 +43,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return new TurnToAngle(m_shooter, 100);
+    return new TurnToAngle(m_shooter, 0);
   }
 }

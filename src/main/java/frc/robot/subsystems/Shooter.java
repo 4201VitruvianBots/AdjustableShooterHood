@@ -23,8 +23,8 @@ public class Shooter extends SubsystemBase {
 
   /** Creates a new ExampleSubsystem. */
   public Shooter() {
-    servoMotors[0].setAngle(0);
-    servoMotors[1].setAngle(0);
+    //servoMotors[0].setAngle(0);
+    //servoMotors[1].setAngle(0);
   }
 
   public void testServo(double angle, boolean left) {
@@ -59,8 +59,22 @@ public class Shooter extends SubsystemBase {
     }
   }
 
-  public double getServosAngle() {
-    return servoMotors[0].getAngle();
+  public double getServosAngle(boolean left) {
+    return servoMotors[left ? 0 : 1].getAngle();
+  }
+
+  public void setServosSpeed(double speed) {
+    servoMotors[0].setSpeed(speed);
+    servoMotors[1].setSpeed(speed);
+  }
+
+  public void setSpeed(double speed, boolean left) {
+    SmartDashboard.putNumber("Speed", speed);
+    if (left) {
+      servoMotors[0].setSpeed(speed);
+    } else {
+      servoMotors[1].setSpeed(speed);
+    }
   }
 
   @Override

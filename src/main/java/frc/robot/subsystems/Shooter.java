@@ -16,15 +16,11 @@ public class Shooter extends SubsystemBase {
   private final boolean leftInverted = false;
   private final boolean rightInverted = false;
 
-  private final Servo[] servoMotors = {
-    new Servo(Constants.leftServoMotor),
-    new Servo(Constants.rightServoMotor)
-  };
+  private final Servo[] servoMotors = { new Servo(Constants.leftServoMotor), new Servo(Constants.rightServoMotor) };
 
-  /** Creates a new ExampleSubsystem. */
   public Shooter() {
-    //servoMotors[0].setAngle(0);
-    //servoMotors[1].setAngle(0);
+    servoMotors[0].setAngle(0);
+    servoMotors[1].setAngle(0);
   }
 
   public void testServo(double angle, boolean left) {

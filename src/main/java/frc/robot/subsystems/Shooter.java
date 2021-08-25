@@ -10,30 +10,27 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
-  private final double gearRatio = 14.0 / 48.0;
+  // private final double gearRatio = 14.0 / 48.0;
   private final double minAngle = 0;
   private final double maxAngle = 180; // in degrees, furthest angle the hood can adjust to
-  private final boolean leftInverted = false;
-  private final boolean rightInverted = false;
+  private final boolean leftServoInverted = false;
+  private final boolean rightServoInverted = true;
 
   private final Servo[] servoMotors = { new Servo(Constants.leftServoMotor), new Servo(Constants.rightServoMotor) };
 
   public Shooter() {
-    servoMotors[0].setAngle(0);
-    servoMotors[1].setAngle(0);
+    // servoMotors[0].setAngle(0);
+    // servoMotors[1].setAngle(0);
   }
 
-  public void testServo(double angle, boolean left) {
+  public void testServo(double angle, int index) {
     if (angle > maxAngle) {
       angle = maxAngle;
-    } else if (angle < minAngle) {
+    }
+    if (angle < minAngle) {
       angle = minAngle;
     }
-    if (left) {
-      servoMotors[0].setAngle(angle);
-    } else {
-      servoMotors[1].setAngle(angle);
-    }
+    servoMotors[index].setAngle(angle);
   }
 
   // Angle in degrees
@@ -43,40 +40,34 @@ public class Shooter extends SubsystemBase {
     } else if (angle < minAngle) {
       angle = minAngle;
     }
-    if (leftInverted) {
+    if (leftServoInverted) {
       servoMotors[0].setAngle(maxAngle - angle);
     } else {
       servoMotors[0].setAngle(angle);
     }
-    if (rightInverted) {
+    if (rightServoInverted) {
       servoMotors[1].setAngle(maxAngle - angle);
     } else {
       servoMotors[1].setAngle(angle);
     }
   }
 
-  public double getServosAngle(boolean left) {
-    return servoMotors[left ? 0 : 1].getAngle();
+  public double getServosAngle(int index) {
+    return servoMotors[index].getAngle();
   }
 
-  public void setServosSpeed(double speed) {
-    servoMotors[0].setSpeed(speed);
-    servoMotors[1].setSpeed(speed);
-  }
-
-  public void setSpeed(double speed, boolean left) {
-    SmartDashboard.putNumber("Speed", speed);
-    if (left) {
-      servoMotors[0].setSpeed(speed);
-    } else {
-      servoMotors[1].setSpeed(speed);
-    }
+  public void setSpeed(int index, double speed) {
+    servoMotors[index].setSpeed(speed);
   }
 
   @Override
   public void periodic() {
     SmartDashboard.putNumber("left servo angle", servoMotors[0].getAngle());
     SmartDashboard.putNumber("right servo angle", servoMotors[1].getAngle());
+    SmartDashboard.putNumber("Speed Index 0", servoMotors[0].getSpeed());
+    SmartDashboard.putNumber("Speed Index 1", servoMotors[1].getSpeed());
+    SmartDashboard.putNumber("left servo position", servoMotors[0].getPosition());
+    SmartDashboard.putNumber("right servo position", servoMotors[1].getPosition());
     // This method will be called once per scheduler run
   }
 

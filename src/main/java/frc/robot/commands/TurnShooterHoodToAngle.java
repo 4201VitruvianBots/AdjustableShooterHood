@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.ShooterHood;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 
 /** An example command that uses an example subsystem. */
 public class TurnShooterHoodToAngle extends CommandBase {
@@ -14,36 +15,49 @@ public class TurnShooterHoodToAngle extends CommandBase {
   private final double m_angle;
 
   /**
-   * Creates a new ExampleCommand.
+   * This is the constructor which sets inputAngle to the double angle
    *
-   * @param subsystem The subsystem used by this command.
+   * @param takes in inputAngle
    */
-  public TurnShooterHoodToAngle(ShooterHood shooter, double angle) {
-    m_shooterHood = shooter;
-    m_angle = angle;
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(shooter);
+  public TurnShooterHoodToAngle(double inputAngle, ShooterHood shooterHood) {
+    // Use requires() here to declare subsystem dependencies
+    // requires(shooterhood);
+    m_shooterHood = shooterHood;
+    m_angle = inputAngle;
+
+    addRequirements(shooterHood);
   }
 
-  // Called when the command is initially scheduled.
-  @Override
+  // Called just before this Command runs the first time
   public void initialize() {
+  }
+
+  /**
+   * takes in a double angle for the motor's position and moves motor to said
+   * position
+   */
+  // Called repeatedly when this Command is scheduled to run
+  public void execute() {
     m_shooterHood.setHoodAngle(m_angle);
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-  }
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-  }
-
-  // Returns true when the command should end.
-  @Override
+  /**
+   * when the angle of the motor equals the set angle, the command terminates
+   */
+  // Make this return true when this Command no longer needs to run execute()
   public boolean isFinished() {
-    return true;
+    if (m_shooterHood.getHoodAngle() == m_angle)
+      return true;
+    else
+      return false;
+  }
+
+  // Called once after isFinished returns true
+  protected void end() {
+  }
+
+  // Called when another command which requires one or more of the same
+  // subsystems is scheduled to run
+  protected void interrupted() {
   }
 }

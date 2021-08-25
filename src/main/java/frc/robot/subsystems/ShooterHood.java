@@ -10,8 +10,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class ShooterHood extends SubsystemBase {
-  // private final double gearRatio = 14.0 / 48.0;
-  private final boolean ShooterHoodInvertion = false;
   private final Servo ShooterHoodServo = new Servo(Constants.ShooterHoodServo);
 
   public ShooterHood() {
@@ -21,8 +19,8 @@ public class ShooterHood extends SubsystemBase {
 
   public void setHoodAngle(double degrees) {
     if (degrees >= Constants.minHoodValue && degrees <= Constants.maxHoodValue)
-      ShooterHoodServo.setAngle(Constants.maxHoodValue - degrees);
-    else// drive to nearest limit (> because higher angle means hood moves lower)
+      ShooterHoodServo.setAngle(degrees);
+    else// drive to nearest limit
     if (Math.abs(this.getHoodAngle() - Constants.minHoodValue) < Math.abs(this.getHoodAngle() - Constants.maxHoodValue))
       ShooterHoodServo.setAngle(Constants.minHoodValue);
     else

@@ -6,8 +6,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.TurnToAngle;
-import frc.robot.subsystems.Shooter;
+import frc.robot.commands.TurnShooterHoodToAngle;
+import frc.robot.subsystems.ShooterHood;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 
@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final Shooter m_shooter = new Shooter();
+  private final ShooterHood m_shooterHood = new ShooterHood();
 
   // private final ExampleCommand m_autoCommand = new ExampleCommand(m_shooter);
 
@@ -48,7 +48,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    // return new TurnToAngle(m_shooter, 30);
-    return new WaitCommand(0);
+    return new TurnShooterHoodToAngle(m_shooterHood, 10);
   }
 }

@@ -4,13 +4,13 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.ShooterHood;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class TurnToAngle extends CommandBase {
+public class TurnShooterHoodToAngle extends CommandBase {
   @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
-  private final Shooter m_shooter;
+  private final ShooterHood m_shooterHood;
   private final double m_angle;
 
   /**
@@ -18,8 +18,8 @@ public class TurnToAngle extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public TurnToAngle(Shooter shooter, double angle) {
-    m_shooter = shooter;
+  public TurnShooterHoodToAngle(ShooterHood shooter, double angle) {
+    m_shooterHood = shooter;
     m_angle = angle;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(shooter);
@@ -28,7 +28,7 @@ public class TurnToAngle extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_shooter.testServo(m_angle, false);
+    m_shooterHood.setHoodAngle(m_angle);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -44,6 +44,6 @@ public class TurnToAngle extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

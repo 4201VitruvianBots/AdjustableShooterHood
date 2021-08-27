@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.TurnShooterHoodToAngle;
 import frc.robot.subsystems.ShooterHood;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -47,6 +49,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return new TurnShooterHoodToAngle(m_shooterHood, 10);
+    return new SequentialCommandGroup(new TurnShooterHoodToAngle(m_shooterHood, 1), new WaitCommand(2),
+        new TurnShooterHoodToAngle(m_shooterHood, -1));
   }
 }

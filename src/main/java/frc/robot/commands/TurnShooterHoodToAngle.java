@@ -6,7 +6,6 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.ShooterHood;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.Subsystem;
 
 /** An example command that uses an example subsystem. */
 public class TurnShooterHoodToAngle extends CommandBase {
@@ -19,7 +18,7 @@ public class TurnShooterHoodToAngle extends CommandBase {
    *
    * @param takes in inputAngle
    */
-  public TurnShooterHoodToAngle(double inputAngle, ShooterHood shooterHood) {
+  public TurnShooterHoodToAngle(ShooterHood shooterHood, double inputAngle) {
     // Use requires() here to declare subsystem dependencies
     // requires(shooterhood);
     m_shooterHood = shooterHood;

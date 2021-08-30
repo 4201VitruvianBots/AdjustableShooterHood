@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.TurnShooterHoodToAngle;
 import frc.robot.subsystems.ShooterHood;
@@ -21,6 +22,9 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+  static Joystick leftJoystick = new Joystick(Constants.leftJoystick);
+  static Joystick rightJoystick = new Joystick(Constants.rightJoystick);
+  static Joystick xBoxController = new Joystick(Constants.xBoxController);
   private final ShooterHood m_shooterHood = new ShooterHood();
 
   // private final ExampleCommand m_autoCommand = new ExampleCommand(m_shooter);
@@ -31,6 +35,16 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+
+  }
+
+  public void teleOp() {
+    // m_shooterHood.setHoodAngle(leftJoystick.getRawAxis(0) * 270);
+    if (leftJoystick.getRawAxis(0) < 0.05 && leftJoystick.getRawAxis(0) > -0.05) {
+      m_shooterHood.stopHoodServos();
+    } else {
+      m_shooterHood.setHoodSpeed(leftJoystick.getRawAxis(0));
+    }
   }
 
   /**
@@ -49,7 +63,9 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return new SequentialCommandGroup(new TurnShooterHoodToAngle(m_shooterHood, 1), new WaitCommand(2),
-        new TurnShooterHoodToAngle(m_shooterHood, -1));
+    // return new SequentialCommandGroup(new TurnShooterHoodToAngle(m_shooterHood,
+    // 1), new WaitCommand(2),
+    // new TurnShooterHoodToAngle(m_shooterHood, 1));
+    return new WaitCommand(0);
   }
 }

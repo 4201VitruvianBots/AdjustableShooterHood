@@ -37,7 +37,7 @@ public class TurnShooterHoodToAngle extends CommandBase {
    */
   // Called repeatedly when this Command is scheduled to run
   public void execute() {
-    m_shooterHood.setHoodAngle(m_angle);
+    // m_shooterHood.setHoodAngle(m_angle);
   }
 
   /**
@@ -45,10 +45,7 @@ public class TurnShooterHoodToAngle extends CommandBase {
    */
   // Make this return true when this Command no longer needs to run execute()
   public boolean isFinished() {
-    if (m_shooterHood.getHoodAngle() == m_angle)
-      return true;
-    else
-      return false;
+    return true;
   }
 
   // Called once after isFinished returns true

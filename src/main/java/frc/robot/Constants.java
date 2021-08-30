@@ -15,9 +15,14 @@ package frc.robot;
  * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    // USB PORTS
+    public static final int leftJoystick = 0;
+    public static final int rightJoystick = 1;
+    public static final int xBoxController = 2;
     // CAN Addresses
     public static final int flywheelMtorB = 41;
-    public static final int ShooterHoodServo = 0;
+    public static final int LeftShooterHoodServo = 0;
+    public static final int RightShooterHoodServo = 1;
     public static final double minHoodValue = 0;
-    public static final double maxHoodValue = 28;
+    public static final double maxHoodValue = 270;
 }

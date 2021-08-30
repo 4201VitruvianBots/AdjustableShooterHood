@@ -10,32 +10,34 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class ShooterHood extends SubsystemBase {
-  private final Servo ShooterHoodServo = new Servo(Constants.ShooterHoodServo);
+  private final Servo[] ShooterHoodServos = { new Servo(Constants.LeftShooterHoodServo),
+      new Servo(Constants.RightShooterHoodServo) };
 
   public ShooterHood() {
-    // servoMotors[0].setAngle(0);
-    // servoMotors[1].setAngle(0);
   }
 
   public void setHoodAngle(double degrees) {
-    if (degrees >= Constants.minHoodValue && degrees <= Constants.maxHoodValue)
-      ShooterHoodServo.setAngle(degrees);
-    else// drive to nearest limit
-    if (Math.abs(this.getHoodAngle() - Constants.minHoodValue) < Math.abs(this.getHoodAngle() - Constants.maxHoodValue))
-      ShooterHoodServo.setAngle(Constants.minHoodValue);
-    else
-      ShooterHoodServo.setAngle(Constants.maxHoodValue);
-
+    if (degrees >= Constants.minHoodValue && degrees <= Constants.maxHoodValue) {
+      ShooterHoodServos[0].setAngle(degrees);
+      ShooterHoodServos[1].setAngle(Constants.maxHoodValue - degrees);
+    }
+    if (degrees < Constants.minHoodValue) {
+      ShooterHoodServos[0].setAngle(Constants.minHoodValue);
+      ShooterHoodServos[1].setAngle(Constants.minHoodValue);
+    }
+    if (degrees > Constants.maxHoodValue) {
+      ShooterHoodServos[0].setAngle(Constants.maxHoodValue);
+      ShooterHoodServos[1].setAngle(Constants.maxHoodValue);
+    }
   }
 
   public double getHoodAngle() {
-    return ShooterHoodServo.getAngle();
+    return ShooterHoodServos[0].getAngle();
   }
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("ShooterHoodServo angle", ShooterHoodServo.getAngle());
-    SmartDashboard.putNumber("ShooterHoodServo position", ShooterHoodServo.getPosition());
+    SmartDashboard.putNumber("ShooterHoodServos angle", this.getHoodAngle());
     // This method will be called once per scheduler run
   }
 

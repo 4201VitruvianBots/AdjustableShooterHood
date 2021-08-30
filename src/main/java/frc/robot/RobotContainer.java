@@ -39,12 +39,7 @@ public class RobotContainer {
   }
 
   public void teleOp() {
-    // m_shooterHood.setHoodAngle(leftJoystick.getRawAxis(0) * 270);
-    if (leftJoystick.getRawAxis(0) < 0.05 && leftJoystick.getRawAxis(0) > -0.05) {
-      m_shooterHood.stopHoodServos();
-    } else {
-      m_shooterHood.setHoodSpeed(leftJoystick.getRawAxis(0));
-    }
+
   }
 
   /**

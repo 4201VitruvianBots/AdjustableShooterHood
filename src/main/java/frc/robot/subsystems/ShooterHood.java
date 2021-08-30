@@ -23,11 +23,11 @@ public class ShooterHood extends SubsystemBase {
     }
     if (degrees < Constants.minHoodValue) {
       ShooterHoodServos[0].setAngle(Constants.minHoodValue);
-      ShooterHoodServos[1].setAngle(Constants.minHoodValue);
+      ShooterHoodServos[1].setAngle(Constants.maxHoodValue);
     }
     if (degrees > Constants.maxHoodValue) {
       ShooterHoodServos[0].setAngle(Constants.maxHoodValue);
-      ShooterHoodServos[1].setAngle(Constants.maxHoodValue);
+      ShooterHoodServos[1].setAngle(Constants.minHoodValue);
     }
   }
 

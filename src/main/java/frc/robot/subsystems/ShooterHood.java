@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -14,6 +15,7 @@ public class ShooterHood extends SubsystemBase {
       new Servo(Constants.RightShooterHoodServo) };
 
   public ShooterHood() {
+    initShuffleboard();
   }
 
   public void setHoodAngle(double degrees) {
@@ -35,10 +37,22 @@ public class ShooterHood extends SubsystemBase {
     return ShooterHoodServos[0].getAngle();
   }
 
+  private void initShuffleboard() {
+    SmartDashboardTab.putNumber("ShooterHood", "HoodAngle", getHoodAngle());
+  }
+
+  private void updateShuffleboard() {
+    SmartDashboard.putNumber("HoodAngle", getHoodAngle());
+  }
+
+  public void updateShooterAngles() {
+    rpmOutput = SmartDashboardTab.getNumber("Shooter", "RPM Output", 0);
+  }
+
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("ShooterHoodServos angle", this.getHoodAngle());
-    // This method will be called once per scheduler run
+    updateShuffleboard();
+    updatePIDValues();
   }
 
   @Override

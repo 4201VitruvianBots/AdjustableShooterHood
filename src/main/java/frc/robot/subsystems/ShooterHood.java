@@ -45,14 +45,13 @@ public class ShooterHood extends SubsystemBase {
     SmartDashboard.putNumber("HoodAngle", getHoodAngle());
   }
 
-  public void updateShooterAngles() {
-    rpmOutput = SmartDashboardTab.getNumber("Shooter", "RPM Output", 0);
-  }
+  // public void updateShooterAngles() {
+  // rpmOutput = SmartDashboardTab.getNumber("Shooter", "RPM Output", 0);
+  // }
 
   @Override
   public void periodic() {
     updateShuffleboard();
-    updatePIDValues();
   }
 
   @Override

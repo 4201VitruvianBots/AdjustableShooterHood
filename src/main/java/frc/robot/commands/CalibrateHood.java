@@ -13,22 +13,18 @@ import frc.robot.subsystems.ShooterHood;
 /**
  * An example command that uses an example subsystem.
  */
-public class SetHood extends CommandBase {
+public class CalibrateHood extends CommandBase {
   @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
   private final ShooterHood m_ShooterHood;
-  private final int m_ShootingPosition;
-  private final double TrenchHoodAngle = 30;
-  private final double LineHoodAngle = 32;
-  private final double TargetHoodAngle = 0;
 
   /**
    * Creates a new ExampleCommand.
    *
    */
-  public SetHood(ShooterHood shooterHood, int ShooterPosition) {
+  public CalibrateHood(ShooterHood shooterHood) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_ShooterHood = shooterHood;
-    m_ShootingPosition = ShooterPosition;
+    addRequirements();
   }
 
   // Called when the command is initially scheduled.
@@ -39,22 +35,8 @@ public class SetHood extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    switch (m_ShootingPosition) {
-      case 0:
-        // Shooting from the trench
-        m_ShooterHood.setHoodAngle(TrenchHoodAngle);
-        break;
-      case 1:
-        // Shooting from the initiation line
-        m_ShooterHood.setHoodAngle(LineHoodAngle);
-        break;
-      case 2:
-        // Shooting from the initiation line
-        m_ShooterHood.setHoodAngle(TargetHoodAngle);
-        break;
-      default:
-        break;
-    }
+    m_ShooterHood.setHoodAngleToSmartDashboardValue();
+    System.out.println("smart dash board value: " + m_ShooterHood.getHoodAngleSmartDashboardValue());
   }
 
   // Called once the command ends or is interrupted.

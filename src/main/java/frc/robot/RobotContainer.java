@@ -7,9 +7,13 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.CalibrateHood;
+import frc.robot.commands.SetHood;
 import frc.robot.subsystems.ShooterHood;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.wpilibj2.command.button.Button;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -24,6 +28,8 @@ public class RobotContainer {
   static Joystick rightJoystick = new Joystick(Constants.rightJoystick);
   static Joystick xBoxController = new Joystick(Constants.xBoxController);
   private final ShooterHood m_shooterHood = new ShooterHood();
+  public Button[] leftButtons = new Button[2];
+  public Button[] rightButtons = new Button[2];
 
   // private final ExampleCommand m_autoCommand = new ExampleCommand(m_shooter);
 
@@ -37,7 +43,10 @@ public class RobotContainer {
   }
 
   public void teleOp() {
-
+    rightButtons[0].whenPressed(new SetHood(m_shooterHood, 0));
+    rightButtons[1].whenPressed(new SetHood(m_shooterHood, 1));
+    leftButtons[0].whenPressed(new SetHood(m_shooterHood, 2));
+    leftButtons[1].whenPressed(new CalibrateHood(m_shooterHood));
   }
 
   /**
@@ -47,6 +56,10 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    for (int i = 0; i < leftButtons.length; i++)
+      leftButtons[i] = new JoystickButton(leftJoystick, (i + 1));
+    for (int i = 0; i < rightButtons.length; i++)
+      rightButtons[i] = new JoystickButton(rightJoystick, (i + 1));
   }
 
   /**

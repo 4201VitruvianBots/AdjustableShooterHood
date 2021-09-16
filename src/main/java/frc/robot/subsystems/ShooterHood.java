@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class ShooterHood extends SubsystemBase {
+  private double SmartDashboardValue;
   private final Servo[] ShooterHoodServos = { new Servo(Constants.LeftShooterHoodServo),
       new Servo(Constants.RightShooterHoodServo) };
 
@@ -37,6 +38,15 @@ public class ShooterHood extends SubsystemBase {
     return ShooterHoodServos[0].getAngle();
   }
 
+  public void setHoodAngleToSmartDashboardValue() {
+    ShooterHoodServos[0].setAngle(SmartDashboardValue);
+    ShooterHoodServos[1].setAngle(Constants.maxHoodValue - SmartDashboardValue);
+  }
+
+  public double getHoodAngleSmartDashboardValue() {
+    return SmartDashboardValue;
+  }
+
   private void initShuffleboard() {
     SmartDashboardTab.putNumber("ShooterHood", "HoodAngle", getHoodAngle());
   }
@@ -45,13 +55,14 @@ public class ShooterHood extends SubsystemBase {
     SmartDashboard.putNumber("HoodAngle", getHoodAngle());
   }
 
-  // public void updateShooterAngles() {
-  // rpmOutput = SmartDashboardTab.getNumber("Shooter", "RPM Output", 0);
-  // }
+  public void updateShooterAngles() {
+    SmartDashboardValue = SmartDashboardTab.getNumber("ShooterHood", "HoodAngle", -1);
+  }
 
   @Override
   public void periodic() {
     updateShuffleboard();
+    updateShooterAngles();
   }
 
   @Override

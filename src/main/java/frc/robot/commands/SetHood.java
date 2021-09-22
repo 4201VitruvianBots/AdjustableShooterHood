@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ShooterHood;
 
@@ -37,17 +38,18 @@ public class SetHood extends CommandBase {
     switch (m_ShootingPosition) {
       case 0:
         // Shooting from the trench
-        m_ShooterHood.setHoodAngle(TrenchHoodAngle);
+        m_ShooterHood.setHoodAngle(0, false);
         break;
       case 1:
         // Shooting from the initiation line
-        m_ShooterHood.setHoodAngle(LineHoodAngle);
+        m_ShooterHood.setHoodAngle(90, false);
         break;
       case 2:
         // Shooting from the initiation line
-        m_ShooterHood.setHoodAngle(TargetHoodAngle);
+        m_ShooterHood.setHoodAngle(0, true);
         break;
       default:
+        m_ShooterHood.setHoodAngle(90, true);
         break;
     }
   }
@@ -71,12 +73,13 @@ public class SetHood extends CommandBase {
     //   default:
     //     break;
     // }
+    // SmartDashboard.putNumber(key, value)
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_ShooterHood.setHoodAngle(0);
+    // m_ShooterHood.setHoodAngle(0, true);
   }
 
   // Returns true when the command should end.

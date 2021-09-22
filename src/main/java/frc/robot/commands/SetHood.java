@@ -18,7 +18,7 @@ public class SetHood extends CommandBase {
   private final ShooterHood m_ShooterHood;
   private final int m_ShootingPosition;
   private final double TrenchHoodAngle = 30;
-  private final double LineHoodAngle = 32;
+  private final double LineHoodAngle = 60;
   private final double TargetHoodAngle = 0;
 
   /**
@@ -34,11 +34,6 @@ public class SetHood extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
     switch (m_ShootingPosition) {
       case 0:
         // Shooting from the trench
@@ -55,6 +50,27 @@ public class SetHood extends CommandBase {
       default:
         break;
     }
+  }
+
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
+    // switch (m_ShootingPosition) {
+    //   case 0:
+    //     // Shooting from the trench
+    //     m_ShooterHood.setHoodAngle(TrenchHoodAngle);
+    //     break;
+    //   case 1:
+    //     // Shooting from the initiation line
+    //     m_ShooterHood.setHoodAngle(LineHoodAngle);
+    //     break;
+    //   case 2:
+    //     // Shooting from the initiation line
+    //     m_ShooterHood.setHoodAngle(TargetHoodAngle);
+    //     break;
+    //   default:
+    //     break;
+    // }
   }
 
   // Called once the command ends or is interrupted.

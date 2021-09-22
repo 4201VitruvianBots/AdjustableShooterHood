@@ -13,7 +13,7 @@ import frc.robot.Constants;
 public class ShooterHood extends SubsystemBase {
   private double SmartDashboardValue;
   private final Servo[] ShooterHoodServos = { new Servo(Constants.LeftShooterHoodServo),
-      new Servo(Constants.RightShooterHoodServo) };
+  /*new Servo(Constants.RightShooterHoodServo)*/ };
 
   public ShooterHood() {
     initShuffleboard();
@@ -40,14 +40,17 @@ public class ShooterHood extends SubsystemBase {
       RightShooterHoodServoGoal = Constants.minHoodValue;
     }
 
-    ShooterHoodServos[0].setAngle(Constants.minHoodValue);
-    ShooterHoodServos[1].setAngle(Constants.minHoodValue);
+    // ShooterHoodServos[0].setAngle(Constants.minHoodValue);
+    // ShooterHoodServos[1].setAngle(Constants.minHoodValue);
 
-    while ((LeftShooterHoodServoAngleEstimate != LeftShooterHoodServoGoal)
-        && (RightShooterHoodServoAngleEstimate != RightShooterHoodServoGoal)) {
-      ShooterHoodServos[0].setAngle();
-      ShooterHoodServos[1].setAngle();
-    }
+    ShooterHoodServos[0].setAngle(LeftShooterHoodServoGoal);
+    // ShooterHoodServos[1].setAngle(RightShooterHoodServoGoal);
+
+    // while ((LeftShooterHoodServoAngleEstimate != LeftShooterHoodServoGoal)
+    //     && (RightShooterHoodServoAngleEstimate != RightShooterHoodServoGoal)) {
+    //   ShooterHoodServos[0].setAngle(LeftShooterHoodServoAngleEstimate + 1);
+    //   ShooterHoodServos[1].setAngle(RightShooterHoodServoAngleEstimate - 1);
+    // }
   }
 
   public double getHoodAngle() {
@@ -56,7 +59,7 @@ public class ShooterHood extends SubsystemBase {
 
   public void setHoodAngleToSmartDashboardValue() {
     ShooterHoodServos[0].setAngle(SmartDashboardValue);
-    ShooterHoodServos[1].setAngle(Constants.maxHoodValue - SmartDashboardValue);
+    // ShooterHoodServos[1].setAngle(Constants.maxHoodValue - SmartDashboardValue);
   }
 
   public double getHoodAngleSmartDashboardValue() {

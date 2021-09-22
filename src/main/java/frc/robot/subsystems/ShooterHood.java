@@ -20,17 +20,33 @@ public class ShooterHood extends SubsystemBase {
   }
 
   public void setHoodAngle(double degrees) {
+    double LeftShooterHoodServoGoal = degrees;
+    double RightShooterHoodServoGoal = Constants.maxHoodValue - degrees;
+    double LeftShooterHoodServoAngleEstimate = 0;
+    double RightShooterHoodServoAngleEstimate = 0;
+
     if (degrees >= Constants.minHoodValue && degrees <= Constants.maxHoodValue) {
-      ShooterHoodServos[0].setAngle(degrees);
-      ShooterHoodServos[1].setAngle(Constants.maxHoodValue - degrees);
+      LeftShooterHoodServoGoal = degrees;
+      RightShooterHoodServoGoal = Constants.maxHoodValue - degrees;
     }
     if (degrees < Constants.minHoodValue) {
-      ShooterHoodServos[0].setAngle(Constants.minHoodValue);
-      ShooterHoodServos[1].setAngle(Constants.maxHoodValue);
+      LeftShooterHoodServoGoal = Constants.minHoodValue;
+      RightShooterHoodServoGoal = Constants.maxHoodValue;
     }
     if (degrees > Constants.maxHoodValue) {
-      ShooterHoodServos[0].setAngle(Constants.maxHoodValue);
-      ShooterHoodServos[1].setAngle(Constants.minHoodValue);
+      // ShooterHoodServos[0].setAngle(Constants.maxHoodValue);
+      // ShooterHoodServos[1].setAngle(Constants.minHoodValue);
+      LeftShooterHoodServoGoal = Constants.maxHoodValue;
+      RightShooterHoodServoGoal = Constants.minHoodValue;
+    }
+
+    ShooterHoodServos[0].setAngle(Constants.minHoodValue);
+    ShooterHoodServos[1].setAngle(Constants.minHoodValue);
+
+    while ((LeftShooterHoodServoAngleEstimate != LeftShooterHoodServoGoal)
+        && (RightShooterHoodServoAngleEstimate != RightShooterHoodServoGoal)) {
+      ShooterHoodServos[0].setAngle();
+      ShooterHoodServos[1].setAngle();
     }
   }
 

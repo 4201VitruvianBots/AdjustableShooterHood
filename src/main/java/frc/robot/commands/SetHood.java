@@ -38,18 +38,18 @@ public class SetHood extends CommandBase {
     switch (m_ShootingPosition) {
       case 0:
         // Shooting from the trench
-        m_ShooterHood.setHoodAngle(0, false);
+        m_ShooterHood.setHoodAngle(0.5, false);
         break;
       case 1:
         // Shooting from the initiation line
-        m_ShooterHood.setHoodAngle(90, false);
+        m_ShooterHood.setHoodAngle(2.5, false);
         break;
       case 2:
         // Shooting from the initiation line
-        m_ShooterHood.setHoodAngle(0, true);
+        m_ShooterHood.setHoodAngle(0.5, true);
         break;
       default:
-        m_ShooterHood.setHoodAngle(90, true);
+        m_ShooterHood.setHoodAngle(2.5, true);
         break;
     }
   }

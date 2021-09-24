@@ -43,10 +43,10 @@ public class RobotContainer {
   }
 
   public void teleOp() {
-    rightButtons[0].whenPressed(new SetHood(m_shooterHood, 2));
-    rightButtons[1].whenPressed(new SetHood(m_shooterHood, 3));
-    leftButtons[0].whenPressed(new SetHood(m_shooterHood, 0));
-    leftButtons[1].whenPressed(new SetHood(m_shooterHood, 1));
+    rightButtons[0].whileHeld(new SetHood(m_shooterHood, 2));
+    rightButtons[1].whileHeld(new SetHood(m_shooterHood, 3));
+    leftButtons[0].whileHeld(new SetHood(m_shooterHood, 0));
+    leftButtons[1].whileHeld(new SetHood(m_shooterHood, 1));
   }
 
   /**

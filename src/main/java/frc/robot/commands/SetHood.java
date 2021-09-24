@@ -18,7 +18,7 @@ public class SetHood extends CommandBase {
   @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
   private final ShooterHood m_ShooterHood;
   private final int m_ShootingPosition;
-  private final double TrenchHoodAngle = 30;
+  private final double TrenchHoodAngle = 270;
   private final double LineHoodAngle = 60;
   private final double TargetHoodAngle = 0;
 
@@ -38,18 +38,18 @@ public class SetHood extends CommandBase {
     switch (m_ShootingPosition) {
       case 0:
         // Shooting from the trench
-        m_ShooterHood.setHoodAngle(0.5, false);
+        m_ShooterHood.setHoodAngle(TrenchHoodAngle, false);
         break;
       case 1:
         // Shooting from the initiation line
-        m_ShooterHood.setHoodAngle(2.5, false);
+        m_ShooterHood.setHoodAngle(-TrenchHoodAngle, false);
         break;
       case 2:
         // Shooting from the initiation line
-        m_ShooterHood.setHoodAngle(0.5, true);
+        m_ShooterHood.setHoodAngle(TrenchHoodAngle, true);
         break;
       default:
-        m_ShooterHood.setHoodAngle(2.5, true);
+        m_ShooterHood.setHoodAngle(-TrenchHoodAngle, true);
         break;
     }
   }
@@ -58,20 +58,20 @@ public class SetHood extends CommandBase {
   @Override
   public void execute() {
     // switch (m_ShootingPosition) {
-    //   case 0:
-    //     // Shooting from the trench
-    //     m_ShooterHood.setHoodAngle(TrenchHoodAngle);
-    //     break;
-    //   case 1:
-    //     // Shooting from the initiation line
-    //     m_ShooterHood.setHoodAngle(LineHoodAngle);
-    //     break;
-    //   case 2:
-    //     // Shooting from the initiation line
-    //     m_ShooterHood.setHoodAngle(TargetHoodAngle);
-    //     break;
-    //   default:
-    //     break;
+    // case 0:
+    // // Shooting from the trench
+    // m_ShooterHood.setHoodAngle(TrenchHoodAngle);
+    // break;
+    // case 1:
+    // // Shooting from the initiation line
+    // m_ShooterHood.setHoodAngle(LineHoodAngle);
+    // break;
+    // case 2:
+    // // Shooting from the initiation line
+    // m_ShooterHood.setHoodAngle(TargetHoodAngle);
+    // break;
+    // default:
+    // break;
     // }
     // SmartDashboard.putNumber(key, value)
   }
@@ -79,7 +79,8 @@ public class SetHood extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    // m_ShooterHood.setHoodAngle(0, true);
+    m_ShooterHood.setHoodAngle(0, true);
+    m_ShooterHood.setHoodAngle(0, false);
   }
 
   // Returns true when the command should end.

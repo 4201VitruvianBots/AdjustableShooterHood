@@ -9,11 +9,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.utils.RevServo;
 
 public class ShooterHood extends SubsystemBase {
   private double SmartDashboardValue;
-  private final Servo[] ShooterHoodServos = { new Servo(Constants.LeftShooterHoodServo),
-  new Servo(Constants.RightShooterHoodServo) };
+  private final RevServo[] ShooterHoodServos = { new Servo(Constants.LeftShooterHoodServo),
+  new RevServo(Constants.RightShooterHoodServo) };
 
 double deadband = 20.0 / 135.0;
 double max = 2.5;
@@ -24,7 +25,7 @@ double deadbandMin = center - deadband;
 
   public ShooterHood() {
     initShuffleboard();
-    for (Servo servo : ShooterHoodServos) {
+    for (RevServo servo : ShooterHoodServos) {
       servo.setBounds(max, deadbandMax, center, deadbandMin, min);
     }
   }

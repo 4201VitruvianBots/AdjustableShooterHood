@@ -13,21 +13,13 @@ import frc.robot.utils.RevServo;
 
 public class ShooterHood extends SubsystemBase {
   private double SmartDashboardValue;
-  private final RevServo[] ShooterHoodServos = { new Servo(Constants.LeftShooterHoodServo),
-  new RevServo(Constants.RightShooterHoodServo) };
-
-double deadband = 20.0 / 135.0;
-double max = 2.5;
-double center = 1.5;
-double min = 0.5;
-double deadbandMax = center + deadband;
-double deadbandMin = center - deadband;
+  private final RevServo[] ShooterHoodServos = {
+    new RevServo(Constants.LeftShooterHoodServo),
+    new RevServo(Constants.RightShooterHoodServo)
+  };
 
   public ShooterHood() {
     initShuffleboard();
-    for (RevServo servo : ShooterHoodServos) {
-      servo.setBounds(max, deadbandMax, center, deadbandMin, min);
-    }
   }
 
   public void setHoodAngle(double degrees, boolean left) {

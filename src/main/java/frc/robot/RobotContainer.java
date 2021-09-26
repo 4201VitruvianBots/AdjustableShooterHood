@@ -43,10 +43,12 @@ public class RobotContainer {
   }
 
   public void teleOp() {
-    rightButtons[0].whileHeld(new SetHood(m_shooterHood, 2));
-    rightButtons[1].whileHeld(new SetHood(m_shooterHood, 3));
-    leftButtons[0].whileHeld(new SetHood(m_shooterHood, 0));
-    leftButtons[1].whileHeld(new SetHood(m_shooterHood, 1));
+    double angle = xBoxController.getRawAxis(1) < 0.05 ? 0 : xBoxController.getRawAxis(1) * 270;
+    m_shooterHood.setHoodAngle(angle);
+//    rightButtons[0].whileHeld(new SetHood(m_shooterHood, 2));
+//    rightButtons[1].whileHeld(new SetHood(m_shooterHood, 3));
+//    leftButtons[0].whileHeld(new SetHood(m_shooterHood, 0));
+//    leftButtons[1].whileHeld(new SetHood(m_shooterHood, 1));
   }
 
   /**

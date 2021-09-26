@@ -35,23 +35,23 @@ public class SetHood extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    switch (m_ShootingPosition) {
-      case 0:
-        // Shooting from the trench
-        m_ShooterHood.setHoodAngle(TrenchHoodAngle, false);
-        break;
-      case 1:
-        // Shooting from the initiation line
-        m_ShooterHood.setHoodAngle(-TrenchHoodAngle, false);
-        break;
-      case 2:
-        // Shooting from the initiation line
-        m_ShooterHood.setHoodAngle(TrenchHoodAngle, true);
-        break;
-      default:
-        m_ShooterHood.setHoodAngle(-TrenchHoodAngle, true);
-        break;
-    }
+//    switch (m_ShootingPosition) {
+//      case 0:
+//        // Shooting from the trench
+//        m_ShooterHood.setHoodAngle(TrenchHoodAngle, false);
+//        break;
+//      case 1:
+//        // Shooting from the initiation line
+//        m_ShooterHood.setHoodAngle(-TrenchHoodAngle, false);
+//        break;
+//      case 2:
+//        // Shooting from the initiation line
+//        m_ShooterHood.setHoodAngle(TrenchHoodAngle, true);
+//        break;
+//      default:
+//        m_ShooterHood.setHoodAngle(-TrenchHoodAngle, true);
+//        break;
+//    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -79,8 +79,8 @@ public class SetHood extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_ShooterHood.setHoodAngle(0, true);
-    m_ShooterHood.setHoodAngle(0, false);
+    m_ShooterHood.setHoodAngle(0);
+    m_ShooterHood.setHoodAngle(0);
   }
 
   // Returns true when the command should end.

@@ -13,10 +13,8 @@ import frc.robot.utils.RevServo;
 
 public class ShooterHood extends SubsystemBase {
   private double SmartDashboardValue;
-  private final RevServo[] ShooterHoodServos = {
-    new RevServo(Constants.LeftShooterHoodServo),
-    new RevServo(Constants.RightShooterHoodServo)
-  };
+  private final RevServo[] ShooterHoodServos = { new RevServo(Constants.LeftShooterHoodServo),
+      new RevServo(Constants.RightShooterHoodServo) };
 
   public ShooterHood() {
     initShuffleboard();
